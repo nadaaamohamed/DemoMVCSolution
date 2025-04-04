@@ -1,3 +1,4 @@
+using Business_Logic.Servies;
 using DataAccess.Data.Contexts;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ namespace Demo.Presention
             });
             //builder.Services.AddScoped<DepartmentRepository>();
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IDepartmentServies, DepartmentServies>();
 
             #endregion
             var app = builder.Build();

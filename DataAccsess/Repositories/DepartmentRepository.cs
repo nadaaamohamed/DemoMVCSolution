@@ -37,7 +37,7 @@ namespace DataAccess.Repositories
             return _dbContext.SaveChanges(); //Save to database
         }
         //Insert
-        public int Insert(Department department)
+        public int Add(Department department)
         {
             _dbContext.Departments.Add(department); //Insert locally
             return _dbContext.SaveChanges(); //Save to database
