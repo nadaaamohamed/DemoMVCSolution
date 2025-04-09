@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Presentation.Controllers
 {
-    public class DepartmentController(IDepartmentServies _departmentServies , 
-        ILogger<DepartmentController> _logger , IWebHostEnvironment _environment) : Controller
+    public class DepartmentController(IDepartmentServies _departmentServies,
+        ILogger<DepartmentController> _logger, IWebHostEnvironment _environment) : Controller
     {
+
         //BaseURL/Department /Index
         public IActionResult Index()
         {
-           var departments = _departmentServies.GetAllDepartments();
+            var departments = _departmentServies.GetAllDepartments();
             return View(departments);
         }
         #region Create Department
@@ -20,45 +21,61 @@ namespace Demo.Presentation.Controllers
         [HttpPost]
         public IActionResult Create(CreateDepartmentDto departmentDto)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
-                   int Result= _departmentServies.AddDepartment(departmentDto);
+                    int Result = _departmentServies.AddDepartment(departmentDto);
                     if (Result > 0)
-                    
+
                         //return View(nameof(Index),_departmentServies.GetAllDepartments());
-                        return RedirectToAction(nameof(Index)); 
+                        return RedirectToAction(nameof(Index));
 
                     else
-                    
+
                         ModelState.AddModelError(string.Empty, "Error In Adding Department");
-                    
+
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     if (_environment.IsDevelopment())
-                    
+
                         //log Error in Console and Return same View with Error message
                         ModelState.AddModelError(string.Empty, ex.Message);
-                    
+
                     else
-                    
+
                         _logger.LogError(ex.Message);
-                    
+
 
                 }
-                
-            }
-            
-            
-                return View(departmentDto);
 
-            
+            }
+
+
+            return View(departmentDto);
+
+
 
         }
-    }
         #endregion
-}
 
+        #region Details of Department
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (!id.HasValue) return BadRequest();
+            var department = _departmentServies.GetDepartmentById(id.Value);
+            if (department is null) return NotFound();
+            return View(department);
+
+
+        }
+        #endregion
+
+    }
+}
+        
+        
+    

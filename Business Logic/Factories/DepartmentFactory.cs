@@ -14,7 +14,7 @@ namespace Business_Logic.Factories
         {
             return new DepartmentDto
             {
-                deptid = D.Id,
+                id = D.Id,
                 Code = D.Code,
                 Name = D.Name,
                 Description = D.Description,
