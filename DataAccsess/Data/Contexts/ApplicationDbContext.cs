@@ -1,5 +1,5 @@
 ﻿using DataAccess.Data.Configrutions;
-using DataAccess.Models.DepartmentsModels;
+using DataAccess.Models.DepartmentModel;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;

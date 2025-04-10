@@ -1,6 +1,6 @@
 ﻿
 
-using DataAccess.Models.DepartmentsModels;
+using DataAccess.Models.DepartmentModel;
 using System.Diagnostics.CodeAnalysis;
 
 namespace DataAccess.Data.Configrutions

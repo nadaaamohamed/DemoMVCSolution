@@ -1,7 +1,7 @@
 ﻿using DataAccess.Models.Shared;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataAccess.Models.DepartmentsModels
+namespace DataAccess.Models.DepartmentModel
 {
     public class Department : BaseEntity
     {
