@@ -1,4 +1,5 @@
 ﻿using DataAccess.Data.Configrutions;
+using DataAccess.Models.DepartmentsModels;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace DataAccess.Data.Contexts
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         //protected  override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer("ConnectionString");

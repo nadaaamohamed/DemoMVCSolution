@@ -1,4 +1,5 @@
 ﻿using DataAccess.Data.Contexts;
+using DataAccess.Models.DepartmentsModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
