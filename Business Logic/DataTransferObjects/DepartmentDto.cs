@@ -8,7 +8,7 @@ namespace Business_Logic.DataTransferObjects
 {
     public class DepartmentDto
     {
-        public int deptid { get; set; }
+        public int id { get; set; }
         public string Code { get; set; }=string.Empty;
         public string Name { get; set; }
         public string Description { get; set; } = string.Empty;

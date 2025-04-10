@@ -1,6 +1,7 @@
 using Business_Logic.Servies;
 using DataAccess.Data.Contexts;
-using DataAccess.Repositories;
+using DataAccess.Repositories.Classes;
+using DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Demo.Presention
@@ -47,7 +48,7 @@ namespace Demo.Presention
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}"); 
+                pattern: "{controller=Department}/{action=Index}/{id?}"); 
             #endregion
 
             app.Run();

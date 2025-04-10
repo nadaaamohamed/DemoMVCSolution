@@ -1,7 +1,7 @@
 ﻿using Business_Logic.DataTransferObjects;
 using Business_Logic.Factories;
 using DataAccess.Models;
-using DataAccess.Repositories;
+using DataAccess.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

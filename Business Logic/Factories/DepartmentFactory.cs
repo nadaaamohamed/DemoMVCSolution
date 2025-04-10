@@ -1,5 +1,5 @@
 ﻿using Business_Logic.DataTransferObjects;
-using DataAccess.Models;
+using DataAccess.Models.DepartmentModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace Business_Logic.Factories
         {
             return new DepartmentDto
             {
-                deptid = D.Id,
+                id = D.Id,
                 Code = D.Code,
                 Name = D.Name,
                 Description = D.Description,
