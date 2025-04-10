@@ -49,7 +49,7 @@ namespace Demo.Presentation.Controllers
                     else
 
                         _logger.LogError(ex.Message);
-                    return View("ErrorView", ex.Message);   
+                    return View("ErrorView", ex.Message);
 
 
                 }
@@ -77,11 +77,11 @@ namespace Demo.Presentation.Controllers
         }
         #endregion
         #region Edit
-        public IActionResult Edit (int? id)
+        public IActionResult Edit(int? id)
         {
-            if(!id.HasValue) return BadRequest();
+            if (!id.HasValue) return BadRequest();
             var department = _departmentServies.GetDepartmentById(id.Value);
-            if(department is null) return NotFound();
+            if (department is null) return NotFound();
             var departmentEditViewModel = new DepartmentEditViewModel()
             {
 
@@ -90,11 +90,11 @@ namespace Demo.Presentation.Controllers
                 Description = department.Description,
                 DateOfCreation = department.CreatedOn
             };
-           
+
             return View(departmentEditViewModel);
         }
         [HttpPost]
-        public IActionResult Edit([FromRoute]int id,DepartmentEditViewModel viewModel)
+        public IActionResult Edit([FromRoute] int id, DepartmentEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +102,7 @@ namespace Demo.Presentation.Controllers
                 {
                     var departmentDto = new UpdatedDepartmentDto()
                     {
-                        Id=id,
+                        Id = id,
                         Name = viewModel.Name,
                         Code = viewModel.Code,
                         Description = viewModel.Description,
@@ -112,9 +112,9 @@ namespace Demo.Presentation.Controllers
                     if (Result > 0)
                         return RedirectToAction(nameof(Index));
                     else
-                       
+
                         ModelState.AddModelError(string.Empty, "Department Is Not Update");
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -136,11 +136,55 @@ namespace Demo.Presentation.Controllers
             return View(viewModel);
 
         }
+        #endregion
+        #region Delete
+        //[HttpGet]
+        //public IActionResult Delete(int? id)
+        //{
+        //    if (!id.HasValue) return BadRequest();
+        //    var department = _departmentServies.GetDepartmentById(id.Value);
+        //    if (department is null) return NotFound();
+        //    return View(department);
 
+        //}
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            if (id == 0) return BadRequest();
+            {
+                try
+                {
+                    bool Deleted = _departmentServies.DeleteDepartment(id);
+                    if (Deleted)
+                        return RedirectToAction(nameof(Index));
+                    else
+                        ModelState.AddModelError(string.Empty, "Department Is Not Deleted");
+                    return RedirectToAction(nameof(Delete), new { id });
+                }
+                catch (Exception ex)
+                {
+                    if (_environment.IsDevelopment())
+                    {
+                        ModelState.AddModelError(string.Empty, ex.Message);
+                        return RedirectToAction(nameof(Index));
+                    }
+
+                    else
+                    {
+                        _logger.LogError(ex.Message);
+                        return View("ErrorView", ex.Message);
+                    }
+                }
+
+            }
+        }
         #endregion
 
     }
+
 }
-        
-        
-    
+
+
+
+
